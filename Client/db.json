@@ -1,0 +1,19 @@
+{
+    "products":[
+    {
+        "id": 1,
+        "name": "fruits",
+        "image":"https://static.toiimg.com/thumb/msid-85372696,width-1280,resizemode-4/85372696.jpg"
+    },
+    {
+        "id": 2,
+        "name": "pomegranate",
+        "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Granatäpfel.JPG/1200px-Granatäpfel.JPG"
+    },
+    {
+        "id": 3,
+        "name": "orange",
+        "image":"https://insanelygoodrecipes.com/wp-content/uploads/2023/01/Fresh_Organic_Tangerine_Oranges_with_Leaves.jpg"
+    }
+]
+}

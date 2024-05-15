@@ -7,35 +7,37 @@ const BasketProvider = ({ children }) => {
   const [basket, setBasket] = useLocalStorage('basket', []);
 
   const AddBasket = (product) => {
-    const productExists = basket.find((item) => item.id === product.id);
+    const productExists = basket.find((item) => item._id === product._id);
     if (!productExists) {
-      setBasket([...basket, product]);  
+      setBasket([...basket, { ...product, count: 1 }]); 
     }
   };
 
   const DeleteBasket = (productId) => {
-    const updatedBasket = basket.filter((item) => item.id !== productId);
+    const updatedBasket = basket.filter((item) => item._id !== productId);
     setBasket(updatedBasket); 
   };
 
-  const increaseBasket = (productId) => {
-    const updatedBasket = basket.map((item) =>
-      item.id === productId ? { ...item, count: item.count + 1 } : item
-    );
+  const increaseBasket = (product_id) => {
+    const updatedBasket = basket.map((item) => {
+      if (item._id === product_id) {
+        const newCount = (item.count || 0) + 1; 
+        return { ...item, count: newCount };
+      }
+      return item;
+    });
     setBasket(updatedBasket);
   };
 
-  const decreaseBasket = (productId) => {
-    const existingItem = basket.find((item) => item.id === productId);
-    if (existingItem && existingItem.count > 1) {
-      const updatedBasket = basket.map((item) =>
-        item.id === productId ? { ...item, count: item.count - 1 } : item
-      );
-      setBasket(updatedBasket);
-    } else {
-      const updatedBasket = basket.filter((item) => item.id !== productId);
-      setBasket(updatedBasket);
-    }
+  const decreaseBasket = (product_id) => {
+    const updatedBasket = basket.map((item) => {
+      if (item._id === product_id && item.count > 1) {
+        const newCount = (item.count || 0) - 1; 
+        return { ...item, count: newCount };
+      }
+      return item;
+    }).filter((item) => item.count !== undefined); 
+    setBasket(updatedBasket);
   };
 
   const basketData = {

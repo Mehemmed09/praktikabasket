@@ -17,20 +17,22 @@ const Basket = () => {
           </thead>
           <tbody>
             {basket.map((item) => (
-              <tr key={item.id}>
+              <tr key={item._id}>
                 <td>
                   <img src={item.image} alt="" width="60px" />
                 </td>
-                <td>{item.name}</td>
+                <td>{item.title}</td>
+                <td>{item.title}</td>
+                <td>{item.price}</td>
                 <td>
-                  <button className="btn btn-danger" onClick={() => DeleteBasket(item.id)}>
+                  <button className="btn btn-danger" onClick={() => DeleteBasket(item._id)}>
                     Delete
                   </button>
-                  <button className="btn btn-primary" onClick={() => decreaseBasket(item.id)}>
+                  <button className="btn btn-primary" onClick={() => decreaseBasket(item._id)}>
                     -
                   </button>
                   <p>{item.count}</p>
-                  <button className="btn btn-primary" onClick={() => increaseBasket(item.id)}>
+                  <button className="btn btn-primary" onClick={() => increaseBasket(item._id)}>
                     +
                   </button>
                 </td>

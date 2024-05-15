@@ -8,7 +8,7 @@ function Products() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/products');
+      const response = await axios.get('http://localhost:5000/api/products');
       setProducts(response.data);
       setLoading(false);
     } catch (error) {
@@ -27,9 +27,9 @@ function Products() {
         <p>Ürünler yükleniyor...</p>
       ) : (
         <div className='cards'>
-          {products.map((product) => (
-            <Cards key={product.id} {...product} product = {product} />
-          ))}
+         {products && products.map((item) => (
+                            <Cards key={item._id} id={item._id} image={item.image} text={item.text} title={item.title} product={item} />
+                        ))}
         </div>
       )}
     </div>
